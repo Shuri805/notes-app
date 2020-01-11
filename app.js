@@ -1,3 +1,6 @@
+const userContainer = document.querySelector('#user-info');
+console.log(userContainer);
+
 const API = 'https://acme-users-api-rev.herokuapp.com/api';
 
 const fetchUser = async ()=> {
@@ -14,8 +17,11 @@ const fetchUser = async ()=> {
   }
   const user = (await axios.get(`${API}/users/random`)).data;
   storage.setItem('userId', user.id);
-  return  user;
+  return user;
 };
 
-fetchUser()
-  .then( user =>console.log(user()));
+const startApp = async()=>{
+  user = await fetchUser();
+  console.log(user);
+};
+startApp();
